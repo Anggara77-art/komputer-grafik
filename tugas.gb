@@ -1,0 +1,157 @@
+'glTranslatef(0,0,-5)
+
+'posisi kamera                                                 
+Dim pcamx# = 0 
+Dim pcamy# = 4 
+Dim pcamz# = 6 
+
+'posisi titik pandang 
+Dim prefx# = 0
+Dim prefy# = 1 
+Dim prefz# = 2      
+
+'tekstur 
+Dim tekstur1
+Dim tekstur2
+Dim tekstur3
+Dim tekstur4
+Dim tekstur5
+Dim tekstur6          
+
+'kecepatan 
+Dim kecepatan# = 0.0010
+
+tekstur1 = loadmipmaptexture("gb/gambar.jpg")
+tekstur2 = loadmipmaptexture("gb/gambar2.jpg")
+tekstur3 = loadmipmaptexture("gb/gambar21.jpg")
+tekstur4 = loadmipmaptexture("gb/gambar10.jpeg")
+tekstur5 = loadmipmaptexture("gb/gambar4.jpg")
+tekstur6 = loadmipmaptexture("gb/gambar3.jpg")
+
+glEnable(GL_TEXTURE_2D)
+
+while true
+glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
+glLoadIdentity()
+gluLookAt(pcamx#,pcamy#,pcamz#,prefx#,prefy#,prefz#,0,1,0) 'kamera
+
+glBindTexture(GL_TEXTURE_2D, tekstur1)
+
+'sisi depan
+glBegin(GL_QUADS) 'segiempat sisi enam
+    'glColor3f(1,0,0) 'merah
+    glTexCoord2f(1,1)
+    glVertex3f(-0.5,-0.5,0.5) 'kanan atas
+    'glColor3f(0,1,0) 'hijau
+    glTexCoord2f(1,0)
+    glVertex3f(0.5,-0.5,0.5) 'kanan bawah
+    'glColor3f(0,0,1) 'biru
+    glTexCoord2f(0,0)
+    glVertex3f(0.5,0.5,0.5) 'kiri bawah
+    'glColor3f(1,1,0) 'kuning
+    glTexCoord2f(0,1)
+    glVertex3f(-0.5,0.5,0.5) 'kiri atas
+glEnd()
+
+'sisi belakang
+glBindTexture(GL_TEXTURE_2D, tekstur2)
+                                         
+glBegin(GL_QUADS)    
+    'glColor3f(0,0,1)
+    glTexCoord2f(1,1)
+    glVertex3f(-0.5,-0.5,0.5)
+    'glColor3f(0,1,1)
+    glTexCoord2f(1,0)
+    glVertex3f(0.5,-0.5,0.5)
+    'glColor3f(1,0,0)
+    glTexCoord2f(0,0)
+    glVertex3f(0.5,0.5,-0.5)
+    'glColor3f(0,1,0)
+    glTexCoord2f(0,1)
+    glVertex3f(-0.5,0.5,-0.5)
+glEnd()
+'sisi kanan     
+glBindTexture(GL_TEXTURE_2D, tekstur3)     
+glBegin(GL_QUADS) 'segiempat sisi depan
+    'glColor3f(1,0,0) 'merah
+    glTexCoord2f(1,1)
+    glVertex3f(0.5,-0.5,0.5) 'kanan atas
+    'glColor3f(0,1,0) 'hijau
+    glTexCoord2f(1,0)
+    glVertex3f(0.5,-0.5,-0.5) 'kanan bawah
+    'glColor3f(0,0,1) 'biru
+    glTexCoord2f(0,0)
+    glVertex3f(0.5,0.5,-0.5) 'kiri bawah
+    'glColor3f(1,1,0) 'kuning
+    glTexCoord2f(0,1)
+    glVertex3f(0.5,0.5,0.5) 'kiri atas
+glEnd() 
+' sisi kiri
+glBindTexture(GL_TEXTURE_2D, tekstur4)
+glBegin(GL_QUADS) 'segiempat sisi depan
+    'glColor3f(1,0,0) 'merah
+    glTexCoord2f(1,1)
+    glVertex3f(-0.5,0.5,0.5) 'kanan atas
+    'glColor3f(0,1,0) 'hijau
+    glTexCoord2f(1,0)
+    glVertex3f(-0.5,-0.5,-0.5) 'kanan bawah
+    'glColor3f(0,0,1) 'biru
+    glTexCoord2f(0,0)
+    glVertex3f(-0.5,0.5,-0.5) 'kiri bawah
+    'glColor3f(1,1,0) 'kuning
+    glTexCoord2f(0,1)
+    glVertex3f(-0.5,0.5,0.5) 'kiri atas
+glEnd()
+' sisi atas
+glBindTexture(GL_TEXTURE_2D, tekstur5)
+glBegin(GL_QUADS) 'segiempat sisi depan
+    'glColor3f(1,0,0) 'merah
+    glTexCoord2f(1,1)
+    glVertex3f(-0.5,0.5,0.5) 'kanan atas
+    'glColor3f(0,1,0) 'hijau
+    glTexCoord2f(1,0)
+    glVertex3f(0.5,0.5,0.5) 'kanan bawah
+    'glColor3f(0,0,1) 'biru
+    glTexCoord2f(0,0)
+    glVertex3f(0.5,0.5,-0.5) 'kiri bawah
+    'glColor3f(1,1,0) 'kuning
+    glTexCoord2f(0,1)
+    glVertex3f(-0.5,0.5,-0.5) 'kiri atas
+glEnd()
+' sisi bawah
+glBindTexture(GL_TEXTURE_2D, tekstur6)
+glBegin(GL_QUADS) 'segiempat sisi depan
+    'glColor3f(1,0,0) 'merah
+    glTexCoord2f(1,1)
+    glVertex3f(-0.5,-0.5,0.5) 'kanan atas
+    'glColor3f(0,1,0) 'hijau
+    glTexCoord2f(1,0)
+    glVertex3f(0.5,-0.5,0.5) 'kanan bawah
+    'glColor3f(0,0,1) 'biru
+    glTexCoord2f(0,0)
+    glVertex3f(0.5,-0.5,-0.5) 'kiri bawah
+    'glColor3f(1,1,0) 'kuning
+    glTexCoord2f(0,1)
+    glVertex3f(-0.5,0.5,-0.5) 'kiri atas
+glEnd()
+swapBuffers()
+
+if scankeydown(VK_UP) then 
+    prefz# = prefz# + kecepatan#
+    pcamz# = pcamz# + kecepatan#
+
+elseif scankeydown(VK_DOWN) then 
+    prefz# = prefz# - kecepatan#
+    pcamz# = pcamz# - kecepatan# 
+
+elseif scankeydown(VK_LEFT) then 
+    prefx# = prefx# - kecepatan#
+    pcamy# = pcamy# - kecepatan#
+
+elseif scankeydown(VK_RIGHT) then 
+    prefy# = prefy# - kecepatan#
+    pcamx# = pcamx# - kecepatan#
+
+endif
+
+wend
